@@ -8,6 +8,9 @@ of motion patterns. This paper introduces an innovative approach to improve MOT 
 ## Dataset
 You can download our dataset from [this link](https://uottawa-my.sharepoint.com/personal/welah096_uottawa_ca/_layouts/15/guestaccess.aspx?share=Eaj4CXffvXxNuwdGDSuMYg4BWIgs6OjQp_7UGf5OErs4iQ&e=5rUOPy)
 
+## Dataset from other paper: Multiple Object Detection and Tracking in the Thermal Spectrum
+You can download the dataset mentioned in our other [paper](https://openaccess.thecvf.com/content/CVPR2022W/PBVS/html/Ahmar_Multiple_Object_Detection_and_Tracking_in_the_Thermal_Spectrum_CVPRW_2022_paper.html) from [this link](https://uottawa-my.sharepoint.com/personal/welah096_uottawa_ca/_layouts/15/guestaccess.aspx?share=EZwg-o1c2TxBohykxvxwyHEB-MGpVM-UyJsqaGoJnEqZVA&e=SILJwS)
+
 ## Citation
 If you use our work and/or dataset, we would appreciate if you cite our paper:
 
