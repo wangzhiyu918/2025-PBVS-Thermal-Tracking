@@ -12,20 +12,41 @@ import json
 import numpy as np
 from pycocotools.coco import COCO
 
+# coco_obj = COCO("./thermal_test_annotations.json")
+# with open("./yolov8s_results.bbox.json", "r") as f:
+#     yolo_results = json.load(f)
+#
+# image_to_dets = {}
+# for result in yolo_results:
+#     image_id = result["image_id"]
+#     image_name = coco_obj.loadImgs(ids=[image_id])[0]['file_name']
+#     if image_name not in image_to_dets:
+#         image_to_dets[image_name] = []
+#     
+#     bbox = result['bbox']
+#     score = result['score']
+#     x1, y1, w, h = bbox
+#     x2 = x1 + w
+#     y2 = y1 + h
+#     bbox_with_score = [x1, y1, x2, y2, score]
+#     image_to_dets[image_name].append(bbox_with_score)
+
 coco_obj = COCO("./thermal_test_annotations.json")
-with open("./yolov8s_results.bbox.json", "r") as f:
+with open("./predictions.json", "r") as f:
     yolo_results = json.load(f)
 
 image_to_dets = {}
 for result in yolo_results:
-    image_id = result["image_id"]
-    image_name = coco_obj.loadImgs(ids=[image_id])[0]['file_name']
+    image_name = result["image_id"] + ".png"
     if image_name not in image_to_dets:
         image_to_dets[image_name] = []
     
     bbox = result['bbox']
     score = result['score']
-    bbox_with_score = bbox + [score]
+    x1, y1, w, h = bbox
+    x2 = x1 + w
+    y2 = y1 + h
+    bbox_with_score = [x1, y1, x2, y2, score]
     image_to_dets[image_name].append(bbox_with_score)
 
 @MODELS.register_module()
