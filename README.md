@@ -12,3 +12,8 @@ We use YOLOv8 as the detector and ByteTrack as the tracker for thermal pedestria
 
 Please follow [mmtrack](https://github.com/open-mmlab/mmtracking/blob/master/docs/en/install.md) to install the requirements.
 
+```
+# modify the image dir in utils/infer_results.py
+python utils/infer_results.py
+```
+
