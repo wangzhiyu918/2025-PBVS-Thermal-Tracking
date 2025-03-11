@@ -81,15 +81,19 @@ def process(folder, conf, outfile):
 
 if __name__ == "__main__":
     mmtrack_config = "/home/wassimea/Desktop/tmot/mmtracking/configs/mot/ocsort/ocsort_tood_rgb.py"
+    mmtrack_config = "./mmtracking/configs/mot/bytetrack/bytetrack_tood_thermal.py"
 
     data_folder = "/media/wassimea/Storage/datasets/infolks_dataset/images_unprocessed/val/"
+    data_folder = "../data/tmot_dataset_challenge/images/val/"
 
     out_folder = "/home/wassimea/Desktop/preds/"
+    out_folder = "./preds/"
 
     sequences = ["seq2", "seq17", "seq22", "seq47", "seq54", "seq66"]
     #sequences = ["seq47"]
 
     target = "rgb"
+    target = "thermal"
 
     for sequence in sequences:
         process(os.path.join(data_folder, sequence, target), mmtrack_config, os.path.join(out_folder, sequence + "_" + target + ".txt"))

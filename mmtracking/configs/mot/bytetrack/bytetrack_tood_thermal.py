@@ -11,12 +11,7 @@ model = dict(
     type='ByteTrack',
     detector=dict(
         bbox_head=dict(num_classes=1),
-        test_cfg=dict(score_thr=0.01, nms=dict(type='nms', iou_threshold=0.7)),
-        init_cfg=dict(
-            type='Pretrained',
-            checkpoint=  # noqa: E251
-            '/home/wassimea/Desktop/tmot/mmdetection/work_dirs/tood_thermal/epoch_12.pth'  # noqa: E501
-        )),
+        test_cfg=dict(score_thr=0.01, nms=dict(type='nms', iou_threshold=0.7))),
     motion=dict(type='KalmanFilter'),
     tracker=dict(
         type='ByteTracker',

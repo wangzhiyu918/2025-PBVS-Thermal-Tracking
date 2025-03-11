@@ -7,6 +7,26 @@ from mmtrack.core import outs2results, results2outs
 from ..builder import MODELS, build_motion, build_tracker
 from .base import BaseMultiObjectTracker
 
+import os
+import json
+import numpy as np
+from pycocotools.coco import COCO
+
+coco_obj = COCO("./thermal_test_annotations.json")
+with open("./yolov8s_results.bbox.json", "r") as f:
+    yolo_results = json.load(f)
+
+image_to_dets = {}
+for result in yolo_results:
+    image_id = result["image_id"]
+    image_name = coco_obj.loadImgs(ids=[image_id])[0]['file_name']
+    if image_name not in image_to_dets:
+        image_to_dets[image_name] = []
+    
+    bbox = result['bbox']
+    score = result['score']
+    bbox_with_score = bbox + [score]
+    image_to_dets[image_name].append(bbox_with_score)
 
 @MODELS.register_module()
 class ByteTrack(BaseMultiObjectTracker):
@@ -62,11 +82,19 @@ class ByteTrack(BaseMultiObjectTracker):
         if frame_id == 0:
             self.tracker.reset()
 
-        det_results = self.detector.simple_test(
-            img, img_metas, rescale=rescale)
-        assert len(det_results) == 1, 'Batch inference is not supported.'
-        bbox_results = det_results[0]
-        num_classes = len(bbox_results)
+        # We use the offline detection results from YOLOv8
+        use_yolov8s_detections = True
+        if not use_yolov8s_detections:
+            det_results = self.detector.simple_test(
+                img, img_metas, rescale=rescale)
+            assert len(det_results) == 1, 'Batch inference is not supported.'
+            bbox_results = det_results[0]
+            num_classes = len(bbox_results)
+        else:
+            assert len(img_metas) == 1
+            seq_id, _, image_name = img_metas[0]['ori_filename'].split("/")[-3:]
+            bbox_results = [np.array(image_to_dets[seq_id + "_" + image_name], dtype="float32")]
+            num_classes = len(bbox_results)
 
         outs_det = results2outs(bbox_results=bbox_results)
         det_bboxes = torch.from_numpy(outs_det['bboxes']).to(img)
