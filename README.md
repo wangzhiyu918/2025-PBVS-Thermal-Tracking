@@ -1,10 +1,10 @@
 # 2025-CVPR-PBVS-Thermal-Pedestrian-Tracking
 
-## Team
+## Team Member
 
 Zhiyu Wang, Weiqing Lu
 
-## Intro
+## Method
 
 We use YOLOv8 as the detector and ByteTrack as the tracker for thermal pedestrian tracking.
 
