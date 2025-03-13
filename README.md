@@ -2,7 +2,7 @@
 
 ## Team Member
 
-Zhiyu Wang, Weiqing Lu
+Zhiyu Wang, Weiqing Lu, Puhong Duan, Bin Sun, Xudong Kang, Shutao Li
 
 ## Method
 
