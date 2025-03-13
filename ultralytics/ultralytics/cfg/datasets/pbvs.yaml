@@ -1,0 +1,8 @@
+path: /mnt/home/wangzhiyu_data/Challenge/2025-CVPR-PBVS-Workshop/Thermal-Pedestrian-Multiple-Object-Tracking/data/tmot_dataset_challenge  # dataset root dir
+train: local_train/images # train images (relative to 'path') 118287 images
+val: local_test/images # val images (relative to 'path') 5000 images
+test: local_test/images # 20288 of 40670 images, submit to https://competitions.codalab.org/competitions/20794
+
+# Classes
+names:
+  0: person
